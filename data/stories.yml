@@ -1,0 +1,214 @@
+version: "3.1"
+
+stories:
+
+- story: 01 - Eligibility Check
+  steps:
+  - intent: ask_who_is_eligible
+  - action: utter_ask_is_omogeneis
+  - intent: affirm
+  - slot_was_set:
+    - is_omogeneis: "yes"
+
+- story: Eligibility Spouse Check
+  steps:
+  - action: utter_ask_is_spouse
+  - intent: affirm
+  - slot_was_set:
+    - is_child: "yes"
+  - action: action_check_eligibility
+
+- story: Eligibility Child Check
+  steps:
+  - action: utter_ask_is_child
+  - intent: affirm
+  - slot_was_set:
+    - is_child: "yes"
+  - action: action_check_eligibility
+
+- story: Eligibility Widow Check
+  steps:
+  - action: utter_ask_is_widow
+  - intent: affirm
+  - slot_was_set:
+    - is_child: "yes"
+  - action: action_check_eligibility
+
+- story: 02 - Negative eligibility
+  steps:
+  - intent: ask_who_is_eligible
+  - action: utter_ask_is_omogeneis
+  - intent: deny
+  - slot_was_set:
+    - is_omogeneis: "no"
+  - action: action_check_eligibility
+
+- story: 03 - Ask for documents
+  steps:
+  - intent: ask_documents_required
+  - action: action_provide_documents
+
+- story: 04 - Ask for passport
+  steps:
+  - intent: ask_passport
+  - action: utter_passport
+
+- story: 05 - Ask for photos
+  steps:
+  - intent: ask_photos_required
+  - action: utter_photos_required
+
+- story: 06 - Ask for guardian info
+  steps:
+  - intent: ask_guardianship
+  - action: utter_guardianship
+
+- story: 07 - Ask about visa requirement
+  steps:
+  - intent: ask_visa_required
+  - action: utter_visa_required
+
+- story: 08 - Ask about expired old ID
+  steps:
+  - intent: ask_expired_old_id
+  - action: utter_expired_old_id
+
+- story: 09 - Ask about location of submission
+  steps:
+  - intent: ask_application_place
+  - action: utter_application_place
+
+- story: 10 - Ask if service can be done from abroad
+  steps:
+  - intent: ask_if_in_greece_or_abroad
+  - action: utter_if_in_greece_or_abroad
+
+- story: 11 - Ask if application can be done online
+  steps:
+  - intent: ask_if_online_submission
+  - action: utter_if_online_submission
+
+- story: 12 - Ask about tracking application
+  steps:
+  - intent: ask_application_tracking
+  - action: utter_application_tracking
+
+- story: 13 - Ask about cost
+  steps:
+  - intent: ask_cost
+  - action: utter_cost
+
+- story: 14 - Ask about payment method
+  steps:
+  - intent: ask_payment
+  - action: utter_payment
+
+- story: 15 - Ask about rejection reasons
+  steps:
+  - intent: ask_rejection_reasons
+  - action: utter_rejection_reasons
+
+- story: 16 - Ask about required languages
+  steps:
+  - intent: ask_languages
+  - action: utter_languages
+
+- story: 17 - Ask about ethnic areas list
+  steps:
+  - intent: ask_ethnic_areas_list
+  - action: utter_ethnic_areas_list
+
+- story: 18 - Ask for spouse eligibility
+  steps:
+  - intent: ask_for_spouse
+  - action: utter_for_spouse
+
+- story: 19 - Ask for children eligibility
+  steps:
+  - intent: ask_for_children
+  - action: utter_for_children
+
+- story: 20 - Lost document reissue
+  steps:
+  - intent: ask_lost_document
+  - action: utter_lost_document
+
+- story: 21 - Provide documents for widow spouse
+  steps:
+  - intent: ask_documents_required
+  - action: utter_ask_is_spouse
+  - intent: affirm
+  - slot_was_set:
+      - is_spouse: "yes"
+  - action: utter_ask_is_widow
+  - intent: affirm
+  - slot_was_set:
+      - is_widow: "yes"
+  - action: action_provide_documents
+
+- story: 22 - Provide documents for normal child case
+  steps:
+  - intent: ask_documents_required
+  - action: utter_ask_is_child
+  - intent: affirm
+  - slot_was_set:
+      - is_child: "yes"
+  - action: action_provide_documents
+
+- story: 23 - Ask for documents but user is not child
+  steps:
+  - intent: ask_documents_required
+  - action: utter_ask_is_child
+  - intent: deny
+  - slot_was_set:
+      - is_child: "no"
+  - action: action_provide_documents
+
+- story: 24 - Ask for documents but user is not spouse
+  steps:
+  - intent: ask_documents_required
+  - action: utter_ask_is_spouse
+  - intent: deny
+  - slot_was_set:
+      - is_spouse: "no"
+  - action: action_provide_documents
+
+- story: 25 - Ask for documents, is spouse but not widow
+  steps:
+  - intent: ask_documents_required
+  - action: utter_ask_is_spouse
+  - intent: affirm
+  - slot_was_set:
+      - is_spouse: "yes"
+  - action: utter_ask_is_widow
+  - intent: deny
+  - slot_was_set:
+      - is_widow: "no"
+  - action: action_provide_documents
+
+- story: 26 - Eligibility check but not omogeneis
+  steps:
+  - intent: ask_who_is_eligible
+  - action: utter_ask_is_omogeneis
+  - intent: deny
+  - slot_was_set:
+      - is_omogeneis: "no"
+  - action: action_check_eligibility
+
+- story: 27 - Eligibility check, omogeneis but not child
+  steps:
+  - intent: ask_who_is_eligible
+  - action: utter_ask_is_omogeneis
+  - intent: affirm
+  - slot_was_set:
+      - is_omogeneis: "yes"
+  - action: utter_ask_is_child
+  - intent: deny
+  - slot_was_set:
+      - is_child: "no"
+  - action: action_check_eligibility
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: nlu_fallback

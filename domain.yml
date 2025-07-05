@@ -1,0 +1,153 @@
+version: '3.1'
+intents:
+- affirm
+- ask_application_place
+- ask_application_tracking
+- ask_cost
+- ask_documents_required
+- ask_duration_meaning
+- ask_ethnic_areas_list
+- ask_expired_old_id
+- ask_for_children
+- ask_for_spouse
+- ask_guardianship
+- ask_if_albanian
+- ask_if_in_greece_or_abroad
+- ask_if_online_submission
+- ask_languages
+- ask_lost_document
+- ask_passport
+- ask_payment
+- ask_photos_required
+- ask_rejection_reasons
+- ask_time_to_issue
+- ask_visa_required
+- ask_what_is_edto
+- ask_who_is_eligible
+- bot_challenge
+- deny
+- gibberish_test
+- goodbye
+- greet
+- nlu_fallback
+actions:
+- utter_greet
+- action_check_eligibility
+- action_provide_documents
+slots:
+  is_omogeneis:
+    type: categorical
+    values:
+    - yes
+    - no
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+    - type: from_intent
+      intent: deny
+      value: no
+  is_child:
+    type: categorical
+    values:
+    - yes
+    - no
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+    - type: from_intent
+      intent: deny
+      value: no
+  is_spouse:
+    type: categorical
+    values:
+    - yes
+    - no
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+    - type: from_intent
+      intent: deny
+      value: no
+  is_widow:
+    type: categorical
+    values:
+    - yes
+    - no
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+    - type: from_intent
+      intent: deny
+      value: no
+responses:
+  utter_greet:
+  - text: Γεια σου! Πώς μπορώ να σε βοηθήσω σχετικά με το Ε.Δ.Τ.Ο.;
+  utter_default:
+  - text: Συγγνώμη, δεν κατάλαβα. Μπορείς να το διατυπώσεις αλλιώς ή να μου πεις αν αφορά δικαιολογητικά, ειδικότητα, κόστος κ.λπ.?
+  utter_what_is_edto:
+  - text: Το Ειδικό Δελτίο Ταυτότητας Ομογενούς (Ε.Δ.Τ.Ο.) είναι επίσημο έγγραφο που παρέχεται σε ομογενείς από την Αλβανία ή χώρες της πρώην Ε.Σ.Σ.Δ., οι οποίοι διαμένουν στην Ελλάδα, και πιστοποιεί την ιδιότητά τους.
+  utter_duration_meaning:
+  - text: Η 'αόριστη διάρκεια' σημαίνει ότι το Ε.Δ.Τ.Ο. δεν έχει ημερομηνία λήξης και ισχύει για πάντα, εκτός αν υπάρξουν λόγοι ανάκλησης.
+  utter_who_is_eligible:
+  - text: Δικαιούχοι είναι ομογενείς από την Αλβανία ή χώρες της πρώην Ε.Σ.Σ.Δ., οι οποίοι διαμένουν στην Ελλάδα, καθώς και τα ανήλικα τέκνα τους υπό προϋποθέσεις.
+  utter_if_albanian:
+  - text: Ναι, αν έχεις αλβανική ιθαγένεια και διαμένεις στην Ελλάδα, μπορείς να αιτηθείς Ε.Δ.Τ.Ο., εφόσον πληρούνται οι λοιπές προϋποθέσεις.
+  utter_for_spouse:
+  - text: Ναι, ο αλλοδαπός σύζυγος ομογενούς μπορεί να πάρει Ε.Δ.Τ.Ο. υπό προϋποθέσεις, ειδικά αν υπάρχουν ανήλικα τέκνα ή πρόκειται για εν χηρεία σύζυγο.
+  utter_for_children:
+  - text: Ανήλικα τέκνα ομογενών δικαιούνται Ε.Δ.Τ.Ο., εφόσον ο ένας από τους γονείς είναι κάτοχος Ε.Δ.Τ.Ο. και η αίτηση γίνεται από τον έχοντα τη γονική μέριμνα.
+  utter_documents_required:
+  - text: 'Τα βασικά δικαιολογητικά είναι: διαβατήριο σε ισχύ, 3 ή περισσότερες φωτογραφίες, το Ε.Δ.Τ.Ο. του γονέα (αν πρόκειται για παιδί), και πιστοποιητικά οικογενειακής κατάστασης ανά περίπτωση.'
+  utter_passport:
+  - text: Ναι, απαιτείται διαβατήριο σε ισχύ από την αλβανική αρχή ή άλλη χώρα προέλευσης.
+  utter_photos_required:
+  - text: Απαιτούνται 3 (ή περισσότερες) πρόσφατες φωτογραφίες διαστάσεων 2,7 x 2,9 εκατοστών, ίδιες με αυτές για ελληνικά δελτία ταυτότητας.
+  utter_guardianship:
+  - text: Η γονική μέριμνα αποδεικνύεται με έγγραφα από αρμόδιες αρχές, όπως δικαστική απόφαση ή πιστοποιητικά επιμέλειας.
+  utter_visa_required:
+  - text: Η εθνική θεώρηση εισόδου απαιτείται σε συγκεκριμένες περιπτώσεις. Υπάρχουν εξαιρέσεις για παιδιά γεννημένα στην Ελλάδα και για ομογενείς από περιοχές ελληνικής παρουσίας στην Αλβανία.
+  utter_expired_old_id:
+  - text: Αν έχεις παλιό δελτίο αλλοδαπού (ακόμα και ληγμένο), μπορείς να αιτηθείς Ε.Δ.Τ.Ο. εφόσον πληροίς τις υπόλοιπες προϋποθέσεις.
+  utter_application_place:
+  - text: Η αίτηση γίνεται στις αρμόδιες αστυνομικές διευθύνσεις ή στις Διευθύνσεις Αλλοδαπών σε Αττική και Θεσσαλονίκη.
+  utter_if_in_greece_or_abroad:
+  - text: Η αρχική αίτηση γίνεται στην Ελλάδα, εκτός αν βρίσκεστε στην Αλβανία και απευθυνθείτε στο αρμόδιο ελληνικό προξενείο.
+  utter_if_online_submission:
+  - text: Η διαδικασία δεν γίνεται εξ ολοκλήρου ηλεκτρονικά. Πρέπει να υποβληθεί αυτοπροσώπως, αλλά κάποιες πληροφορίες παρέχονται online.
+  utter_application_tracking:
+  - text: Δεν υπάρχει επίσημο online σύστημα παρακολούθησης της αίτησης. Η ενημέρωση γίνεται από την υπηρεσία όπου κατατέθηκε η αίτηση.
+  utter_cost:
+  - text: Το κόστος της αίτησης είναι 25,20 €. Καταβάλλεται μέσω e-παραβόλου.
+  utter_payment:
+  - text: Η πληρωμή μπορεί να γίνει μέσω web banking, κάρτας, ταμείων τραπεζών ή ΕΛΤΑ με χρήση e-παραβόλου (κωδικός 6018).
+  utter_time_to_issue:
+  - text: Ο μέσος χρόνος έκδοσης του Ε.Δ.Τ.Ο. είναι περίπου 1 μήνας.
+  utter_lost_document:
+  - text: Σε περίπτωση απώλειας, πρέπει να κάνεις δήλωση απώλειας στην αστυνομία και να ζητήσεις επανέκδοση από την αρμόδια υπηρεσία.
+  utter_rejection_reasons:
+  - text: Η αίτηση μπορεί να απορριφθεί για λόγους εθνικής ασφάλειας ή εάν υπάρχουν πράξεις αντίθετες με τα συμφέροντα της χώρας.
+  utter_ethnic_areas_list:
+  - text: Ο κατάλογος περιοχών παραδοσιακής ελληνικής παρουσίας στην Αλβανία δημοσιεύεται στο άρθρο 15Α της ΚΥΑ 4000/3/10-πγ (ΦΕΚ 243/Β/2015).
+  utter_languages:
+  - text: Η επίσημη ενημέρωση παρέχεται στα ελληνικά. Μπορείς να ζητήσεις μετάφραση ή να συνοδεύεσαι από μεταφραστή εάν χρειάζεται.
+  utter_goodbye:
+  - text: Αντίο! Είμαι πάντα εδώ αν χρειαστείς βοήθεια ξανά.
+  utter_iamabot:
+  - text: Είμαι ένα chatbot και είμαι εδώ για να σε βοηθήσω!
+  utter_abroad_submission_info:
+  - text: Η αρχική αίτηση γίνεται στην Ελλάδα, εκτός αν βρίσκεστε στην Αλβανία και απευθυνθείτε στο αρμόδιο ελληνικό προξενείο.
+  utter_ask_is_omogeneis:
+  - text: Έχεις ομογενειακή ιδιότητα από Αλβανία ή χώρες της πρώην Ε.Σ.Σ.Δ.;
+  utter_ask_is_child:
+  - text: Πρόκειται για τέκνο ομογενούς;
+  utter_ask_is_spouse:
+  - text: Είσαι σύζυγος ομογενούς;
+  utter_ask_is_widow:
+  - text: Είσαι χήρα/χήρος του ομογενούς;
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
